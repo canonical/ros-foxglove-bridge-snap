@@ -1,0 +1,18 @@
+name: snap
+on:
+  push:
+    branches:
+      - humble
+  pull_request:
+    branches:
+      - humble
+  workflow_dispatch:
+
+jobs:
+  snaps:
+    uses: canonical/robotics-actions-workflows/.github/workflows/snap.yaml@main
+    secrets:
+      snapstore-login: ${{ secrets.STORE_LOGIN }}
+    with:
+      runs-on: '["ubuntu-latest", ["self-hosted", "linux", "ARM64", "medium", "noble"]]'
+      snap-track: '${{ github.base_ref || github.ref_name }}'

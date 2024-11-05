@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+$SNAP/usr/bin/validate_config.sh
+
+# Service was already enabled, just restart it
+# to make sure the new config values are picked up
+snapctl restart ${SNAP_NAME}.${SNAP_NAME} 2>&1 || true
