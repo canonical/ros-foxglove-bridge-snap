@@ -1,0 +1,21 @@
+name: promote
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'foxglove-bridge version to promote'
+        required: true
+        default: humble
+        type: choice
+        options:
+          - humble
+
+jobs:
+  snaps:
+    uses: canonical/robotics-actions-workflows/.github/workflows/promote.yaml@main
+    secrets:
+      snapstore-login: ${{ secrets.STORE_LOGIN }}
+    with:
+      snap: foxglove-bridge
+      from-channel: '${{ inputs.version }}/candidate'
+      to-channel: '${{ inputs.version }}/stable'
