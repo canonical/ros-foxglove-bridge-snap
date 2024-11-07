@@ -1,15 +1,17 @@
 name: foxglove-bridge
-adopt-info: foxglove-bridge
+version: '0.8.0'
 license: MIT
-summary: The foxglove-bridge snap
+summary: Foxglove WebSocket bridge for ROS and ROS 2.
 description: |
-  The foxglove-bridge.
+  High performance ROS 1 and ROS 2 WebSocket bridge using the Foxglove WebSocket protocol, written in C++.
 
 grade: stable
 confinement: strict
 base: core22
 
-issues: https://github.com/foxglove/ros-foxglove-bridge/issues
+source-code: https://github.com/canonical/ros-foxglove-bridge-snap
+issues: https://github.com/canonical/ros-foxglove-bridge-snap/issues
+contact: ubuntu-robotics-community@canonical.com
 website: https://foxglove.dev/
 
 architectures:
@@ -43,13 +45,6 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_TESTING=OFF
     source: https://github.com/foxglove/ros-foxglove-bridge.git
-    override-pull: |
-        craftctl default
-
-        version="$(git describe --always --tags| sed -e 's/^v//;s/-/+git/;y/-/./')"
-        [ -n "$(echo $version | grep "+git")" ] && grade=devel || grade=stable
-        craftctl set version="$version"
-        craftctl set grade="$grade"
     build-packages:
       - ros-humble-spdlog-vendor
     stage-snaps:
