@@ -173,7 +173,8 @@ parts:
       - ros-humble-rosbridge-msgs
       - ros-humble-rosbridge-test-msgs
       - ros-humble-rosgraph-msgs
-      - ros-humble-rqt-image-overlay
+      # Pulls OpenCV, Qt and more.
+      # - ros-humble-rqt-image-overlay
       - ros-humble-rtabmap-msgs
       - ros-humble-rtcm-msgs
       - ros-humble-rviz-2d-overlay-msgs
