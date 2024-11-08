@@ -5,10 +5,11 @@ on:
       version:
         description: 'foxglove-bridge version to promote'
         required: true
-        default: humble
+        default: jazzy
         type: choice
         options:
           - humble
+          - jazzy
 
 jobs:
   snaps:
