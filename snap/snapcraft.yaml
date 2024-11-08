@@ -156,7 +156,8 @@ parts:
       - ros-jazzy-rosapi-msgs
       - ros-jazzy-rosbridge-msgs
       - ros-jazzy-rosgraph-msgs
-      - ros-jazzy-rqt-image-overlay
+      # Pulls OpenCV, Qt and more.
+      # - ros-jazzy-rqt-image-overlay
       - ros-jazzy-rtabmap-msgs
       - ros-jazzy-rtcm-msgs
       - ros-jazzy-rviz-2d-overlay-msgs
@@ -171,7 +172,6 @@ parts:
       - ros-jazzy-stereo-msgs
       - ros-jazzy-system-modes-msgs
       - ros-jazzy-teleop-tools-msgs
-      - ros-jazzy-test-msgs
       - ros-jazzy-tf2-geometry-msgs
       - ros-jazzy-tf2-msgs
       - ros-jazzy-tf2-sensor-msgs
@@ -191,6 +191,45 @@ parts:
       - ros-jazzy-visualization-msgs
       - ros-jazzy-webots-ros2-msgs
       - ros-jazzy-wiimote-msgs
+      - ros-jazzy-autoware-adapi-v1-msgs
+      - ros-jazzy-autoware-adapi-version-msgs
+      - ros-jazzy-autoware-common-msgs
+      - ros-jazzy-autoware-control-msgs
+      - ros-jazzy-autoware-internal-msgs
+      - ros-jazzy-autoware-localization-msgs
+      - ros-jazzy-autoware-map-msgs
+      - ros-jazzy-autoware-perception-msgs
+      - ros-jazzy-autoware-planning-msgs
+      - ros-jazzy-autoware-sensing-msgs
+      - ros-jazzy-autoware-system-msgs
+      - ros-jazzy-autoware-v2x-msgs
+      - ros-jazzy-autoware-vehicle-msgs
+      - ros-jazzy-camera-aravis2-msgs
+      - ros-jazzy-create3-examples-msgs
+      - ros-jazzy-data-tamer-msgs
+      - ros-jazzy-dataspeed-can-msgs
+      - ros-jazzy-ds-dbw-msgs
+      - ros-jazzy-etsi-its-cam-msgs
+      - ros-jazzy-etsi-its-cam-ts-msgs
+      - ros-jazzy-etsi-its-cpm-ts-msgs
+      - ros-jazzy-etsi-its-denm-msgs
+      - ros-jazzy-etsi-its-msgs
+      - ros-jazzy-etsi-its-vam-ts-msgs
+      - ros-jazzy-ffmpeg-image-transport-msgs
+      - ros-jazzy-fuse-msgs
+      - ros-jazzy-marine-acoustic-msgs
+      - ros-jazzy-marine-sensor-msgs
+      - ros-jazzy-mola-msgs
+      - ros-jazzy-nao-lola-command-msgs
+      - ros-jazzy-nao-lola-sensor-msgs
+      - ros-jazzy-ouster-sensor-msgs
+      - ros-jazzy-ros-babel-fish-test-msgs
+      - ros-jazzy-ros2-socketcan-msgs
+      - ros-jazzy-rosbag2-performance-benchmarking-msgs
+      - ros-jazzy-rosbridge-test-msgs
+      - ros-jazzy-service-msgs
+      - ros-jazzy-soccer-geometry-msgs
+      - ros-jazzy-soccer-model-msgs
 
   # copy local scripts to the snap usr/bin
   local-files:
