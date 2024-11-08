@@ -173,7 +173,8 @@ parts:
       - ros-humble-rosbridge-msgs
       - ros-humble-rosbridge-test-msgs
       - ros-humble-rosgraph-msgs
-      - ros-humble-rqt-image-overlay
+      # Pulls OpenCV, Qt and more.
+      # - ros-humble-rqt-image-overlay
       - ros-humble-rtabmap-msgs
       - ros-humble-rtcm-msgs
       - ros-humble-rviz-2d-overlay-msgs
@@ -219,6 +220,60 @@ parts:
       - ros-humble-webots-ros2-msgs
       - ros-humble-wiimote-msgs
       - ros-humble-wireless-msgs
+      - ros-humble-as2-msgs
+      - ros-humble-autoware-adapi-v1-msgs
+      - ros-humble-autoware-adapi-version-msgs
+      - ros-humble-autoware-common-msgs
+      - ros-humble-autoware-control-msgs
+      - ros-humble-autoware-internal-msgs
+      - ros-humble-autoware-localization-msgs
+      - ros-humble-autoware-map-msgs
+      - ros-humble-autoware-perception-msgs
+      - ros-humble-autoware-planning-msgs
+      - ros-humble-autoware-sensing-msgs
+      - ros-humble-autoware-system-msgs
+      - ros-humble-autoware-v2x-msgs
+      - ros-humble-autoware-vehicle-msgs
+      - ros-humble-base2d-kinematics-msgs
+      - ros-humble-camera-aravis2-msgs
+      - ros-humble-caret-msgs
+      - ros-humble-cob-msgs
+      - ros-humble-collision-log-msgs
+      - ros-humble-create3-examples-msgs
+      - ros-humble-data-tamer-msgs
+      - ros-humble-dataspeed-can-msgs
+      - ros-humble-ds-dbw-msgs
+      - ros-humble-etsi-its-cam-msgs
+      - ros-humble-etsi-its-cam-ts-msgs
+      - ros-humble-etsi-its-cpm-ts-msgs
+      - ros-humble-etsi-its-denm-msgs
+      - ros-humble-etsi-its-msgs
+      - ros-humble-etsi-its-vam-ts-msgs
+      - ros-humble-fadecandy-msgs
+      - ros-humble-ffmpeg-image-transport-msgs
+      - ros-humble-gazebo-model-attachment-plugin-msgs
+      - ros-humble-hri-actions-msgs
+      - ros-humble-hri-msgs
+      - ros-humble-marine-acoustic-msgs
+      - ros-humble-marine-sensor-msgs
+      - ros-humble-metro-benchmark-msgs
+      - ros-humble-mocap4r2-control-msgs
+      - ros-humble-mocap4r2-msgs
+      - ros-humble-mocap4r2-robot-gt-msgs
+      - ros-humble-mola-msgs
+      - ros-humble-naoqi-bridge-msgs
+      - ros-humble-off-highway-general-purpose-radar-msgs
+      - ros-humble-off-highway-premium-radar-sample-msgs
+      - ros-humble-off-highway-radar-msgs
+      - ros-humble-off-highway-uss-msgs
+      - ros-humble-opennav-docking-msgs
+      - ros-humble-puma-motor-msgs
+      - ros-humble-qb-device-msgs
+      - ros-humble-qb-softhand-industry-msgs
+      - ros-humble-ros2-socketcan-msgs
+      - ros-humble-situational-graphs-msgs
+      - ros-humble-situational-graphs-reasoning-msgs
+      - ros-humble-vimbax-camera-msgs
 
   # copy local scripts to the snap usr/bin
   local-files:
