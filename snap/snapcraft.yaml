@@ -293,6 +293,8 @@ parts:
       - ros-noetic-wfov-camera-msgs
       - ros-noetic-wireless-msgs
       - ros-noetic-xpp-msgs
+      - ros-noetic-image-transport-plugins
+      - ros-noetic-std-srvs
 
   # copy local scripts to the snap usr/bin
   local-files:
