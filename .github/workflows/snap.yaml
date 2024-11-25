@@ -2,12 +2,12 @@ name: snap
 on:
   push:
     tags:
-      - 'jazzy/*'
+      - 'noetic/*'
     branches:
-      - jazzy
+      - noetic
   pull_request:
     branches:
-      - jazzy
+      - noetic
   workflow_dispatch:
 
 concurrency:
@@ -22,4 +22,4 @@ jobs:
     with:
       snapcraft-enable-experimental-extensions: true
       runs-on: '["ubuntu-latest", ["self-hosted", "linux", "ARM64", "medium", "noble"]]'
-      snap-track: jazzy
+      snap-track: noetic
