@@ -9,6 +9,6 @@ fi
 
 snapctl set port=$(yq '.port // 54321' $CONFIGURATION_FILE_PATH)
 snapctl set address=$(yq '.address // "0.0.0.0"' $CONFIGURATION_FILE_PATH)
-snapctl set topic-whitelist=$(yq '.topic-whitelist // "*"' $CONFIGURATION_FILE_PATH)
+snapctl set topic-whitelist="$(yq '.topic-whitelist // "*"' $CONFIGURATION_FILE_PATH)"
 
 $SNAP/usr/bin/validate_config.sh
