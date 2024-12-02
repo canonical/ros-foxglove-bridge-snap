@@ -35,4 +35,4 @@ if [ "${LAUNCH_OPTIONS}" ]; then
   logger -t ${SNAP_NAME} "Running with options: ${LAUNCH_OPTIONS}"
 fi
 
-ros2 launch foxglove_bridge foxglove_bridge_launch.xml "${LAUNCH_OPTIONS}"
+bash -c "ros2 launch foxglove_bridge foxglove_bridge_launch.xml ${LAUNCH_OPTIONS}"
