@@ -58,4 +58,12 @@ for opt in tls include_hidden use_sim_time use_compression; do
   fi
 done
 
+# Enforce bash list as a string synthax
+for opt in topic-whitelist param-whitelist service-whitelist client-topic-whitelist; do
+  VALUE=$(snapctl get "${opt}")
+  if [ -n "${VALUE}" ]; then
+    snapctl set "${opt}"=$(echo ${VALUE} | tr -d ' ')
+  fi
+done
+
 # @todo assert the rest of the parameters.
