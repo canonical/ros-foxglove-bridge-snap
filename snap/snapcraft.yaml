@@ -1,5 +1,5 @@
 name: foxglove-bridge
-version: '0.8.0'
+version: '0.7.10'
 license: MIT
 summary: Foxglove WebSocket bridge for ROS and ROS 2.
 description: |
@@ -7,16 +7,16 @@ description: |
 
 grade: stable
 confinement: strict
-base: core24
+base: core20
 
 source-code: https://github.com/canonical/ros-foxglove-bridge-snap
 issues: https://github.com/canonical/ros-foxglove-bridge-snap/issues
 contact: ubuntu-robotics-community@canonical.com
 website: https://foxglove.dev/
 
-platforms:
-  amd64:
-  arm64:
+architectures:
+  - build-on: amd64
+  - build-on: arm64
 
 plugs:
   configuration-read:
@@ -33,203 +33,268 @@ apps:
     command: usr/bin/launch.sh
     daemon: simple
     plugs: [network, network-bind]
-    extensions: [ros2-jazzy]
+    extensions: [ros1-noetic]
 
   reset-config:
     command: usr/bin/reset_config.sh
 
 parts:
   foxglove-bridge:
-    plugin: colcon
-    colcon-cmake-args:
+    plugin: catkin
+    catkin-cmake-args:
       - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_TESTING=OFF
+      - -DCATKIN_ENABLE_TESTING=OFF
     source: https://github.com/foxglove/ros-foxglove-bridge.git
-    source-tag: 0.8.0
-    build-packages:
-      - ros-jazzy-spdlog-vendor
+    source-tag: 0.7.10
     stage-snaps:
       - yq
     stage-packages:
-      - ros-jazzy-spdlog-vendor
-      - ros-jazzy-ros2launch
+      - ros-noetic-roslaunch
       # Messages definition are required to bridge them.
       # No custom message is going to be support for now
-      - ros-jazzy-ackermann-msgs
-      - ros-jazzy-action-msgs
-      - ros-jazzy-actionlib-msgs
-      - ros-jazzy-actuator-msgs
-      - ros-jazzy-apriltag-msgs
-      - ros-jazzy-aruco-msgs
-      - ros-jazzy-aruco-opencv-msgs
-      - ros-jazzy-automotive-autonomy-msgs
-      - ros-jazzy-automotive-navigation-msgs
-      - ros-jazzy-automotive-platform-msgs
-      - ros-jazzy-autoware-auto-msgs
-      - ros-jazzy-can-msgs
-      - ros-jazzy-cartographer-ros-msgs
-      - ros-jazzy-cascade-lifecycle-msgs
-      - ros-jazzy-control-msgs
-      - ros-jazzy-controller-manager-msgs
-      - ros-jazzy-delphi-esr-msgs
-      - ros-jazzy-delphi-mrr-msgs
-      - ros-jazzy-delphi-srr-msgs
-      - ros-jazzy-depthai-ros-msgs
-      - ros-jazzy-derived-object-msgs
-      - ros-jazzy-diagnostic-msgs
-      - ros-jazzy-dwb-msgs
-      - ros-jazzy-dynamixel-workbench-msgs
-      - ros-jazzy-event-camera-msgs
-      - ros-jazzy-flexbe-msgs
-      - ros-jazzy-flir-camera-msgs
-      - ros-jazzy-four-wheel-steering-msgs
-      - ros-jazzy-foxglove-msgs
-      - ros-jazzy-gazebo-msgs
-      - ros-jazzy-geographic-msgs
-      - ros-jazzy-geometry-msgs
-      - ros-jazzy-gps-msgs
-      - ros-jazzy-graph-msgs
-      - ros-jazzy-grasping-msgs
-      - ros-jazzy-grbl-msgs
-      - ros-jazzy-grid-map-msgs
-      - ros-jazzy-ibeo-msgs
-      - ros-jazzy-irobot-create-msgs
-      - ros-jazzy-kartech-linear-actuator-msgs
-      - ros-jazzy-leo-msgs
-      - ros-jazzy-lgsvl-msgs
-      - ros-jazzy-lifecycle-msgs
-      - ros-jazzy-map-msgs
-      - ros-jazzy-marti-can-msgs
-      - ros-jazzy-marti-common-msgs
-      - ros-jazzy-marti-dbw-msgs
-      - ros-jazzy-marti-introspection-msgs
-      - ros-jazzy-marti-nav-msgs
-      - ros-jazzy-marti-perception-msgs
-      - ros-jazzy-marti-sensor-msgs
-      - ros-jazzy-marti-status-msgs
-      - ros-jazzy-marti-visualization-msgs
-      - ros-jazzy-mavros-msgs
-      - ros-jazzy-micro-ros-diagnostic-msgs
-      - ros-jazzy-micro-ros-msgs
-      - ros-jazzy-microstrain-inertial-msgs
-      - ros-jazzy-mobileye-560-660-msgs
-      - ros-jazzy-moveit-msgs
-      - ros-jazzy-mrpt-msgs
-      - ros-jazzy-nao-command-msgs
-      - ros-jazzy-nao-sensor-msgs
-      - ros-jazzy-nav-2d-msgs
-      - ros-jazzy-nav-msgs
-      - ros-jazzy-nav2-msgs
-      - ros-jazzy-neobotix-usboard-msgs
-      - ros-jazzy-nmea-msgs
-      - ros-jazzy-novatel-gps-msgs
-      - ros-jazzy-object-recognition-msgs
-      - ros-jazzy-octomap-msgs
-      - ros-jazzy-pal-statistics-msgs
-      - ros-jazzy-pcl-msgs
-      - ros-jazzy-pendulum-msgs
-      - ros-jazzy-phidgets-msgs
-      - ros-jazzy-plotjuggler-msgs
-      - ros-jazzy-polygon-msgs
-      - ros-jazzy-radar-msgs
-      - ros-jazzy-rc-common-msgs
-      - ros-jazzy-rc-reason-msgs
-      - ros-jazzy-rclpy-message-converter-msgs
-      - ros-jazzy-rcss3d-agent-msgs
-      - ros-jazzy-realsense2-camera-msgs
-      - ros-jazzy-rmf-api-msgs
-      - ros-jazzy-rmf-building-map-msgs
-      - ros-jazzy-rmf-charger-msgs
-      - ros-jazzy-rmf-dispenser-msgs
-      - ros-jazzy-rmf-door-msgs
-      - ros-jazzy-rmf-fleet-msgs
-      - ros-jazzy-rmf-ingestor-msgs
-      - ros-jazzy-rmf-lift-msgs
-      - ros-jazzy-rmf-obstacle-msgs
-      - ros-jazzy-rmf-scheduler-msgs
-      - ros-jazzy-rmf-site-map-msgs
-      - ros-jazzy-rmf-task-msgs
-      - ros-jazzy-rmf-traffic-msgs
-      - ros-jazzy-rmf-visualization-msgs
-      - ros-jazzy-rmf-workcell-msgs
-      - ros-jazzy-robot-calibration-msgs
-      - ros-jazzy-rosapi-msgs
-      - ros-jazzy-rosbridge-msgs
-      - ros-jazzy-rosgraph-msgs
-      # Pulls OpenCV, Qt and more.
-      # - ros-jazzy-rqt-image-overlay
-      - ros-jazzy-rtabmap-msgs
-      - ros-jazzy-rtcm-msgs
-      - ros-jazzy-rviz-2d-overlay-msgs
-      - ros-jazzy-sensor-msgs
-      - ros-jazzy-shape-msgs
-      - ros-jazzy-smach-msgs
-      - ros-jazzy-soccer-vision-2d-msgs
-      - ros-jazzy-soccer-vision-3d-msgs
-      - ros-jazzy-soccer-vision-attribute-msgs
-      - ros-jazzy-statistics-msgs
-      - ros-jazzy-std-msgs
-      - ros-jazzy-stereo-msgs
-      - ros-jazzy-system-modes-msgs
-      - ros-jazzy-teleop-tools-msgs
-      - ros-jazzy-tf2-geometry-msgs
-      - ros-jazzy-tf2-msgs
-      - ros-jazzy-tf2-sensor-msgs
-      - ros-jazzy-trajectory-msgs
-      - ros-jazzy-turtlebot3-msgs
-      - ros-jazzy-turtlebot4-msgs
-      - ros-jazzy-twist-mux-msgs
-      - ros-jazzy-ublox-msgs
-      - ros-jazzy-ublox-ubx-msgs
-      - ros-jazzy-udp-msgs
-      - ros-jazzy-unique-identifier-msgs
-      - ros-jazzy-ur-dashboard-msgs
-      - ros-jazzy-ur-msgs
-      - ros-jazzy-urg-node-msgs
-      - ros-jazzy-velodyne-msgs
-      - ros-jazzy-vision-msgs
-      - ros-jazzy-visualization-msgs
-      - ros-jazzy-webots-ros2-msgs
-      - ros-jazzy-wiimote-msgs
-      - ros-jazzy-autoware-adapi-v1-msgs
-      - ros-jazzy-autoware-adapi-version-msgs
-      - ros-jazzy-autoware-common-msgs
-      - ros-jazzy-autoware-control-msgs
-      - ros-jazzy-autoware-internal-msgs
-      - ros-jazzy-autoware-localization-msgs
-      - ros-jazzy-autoware-map-msgs
-      - ros-jazzy-autoware-perception-msgs
-      - ros-jazzy-autoware-planning-msgs
-      - ros-jazzy-autoware-sensing-msgs
-      - ros-jazzy-autoware-system-msgs
-      - ros-jazzy-autoware-v2x-msgs
-      - ros-jazzy-autoware-vehicle-msgs
-      - ros-jazzy-camera-aravis2-msgs
-      - ros-jazzy-create3-examples-msgs
-      - ros-jazzy-data-tamer-msgs
-      - ros-jazzy-dataspeed-can-msgs
-      - ros-jazzy-ds-dbw-msgs
-      - ros-jazzy-etsi-its-cam-msgs
-      - ros-jazzy-etsi-its-cam-ts-msgs
-      - ros-jazzy-etsi-its-cpm-ts-msgs
-      - ros-jazzy-etsi-its-denm-msgs
-      - ros-jazzy-etsi-its-msgs
-      - ros-jazzy-etsi-its-vam-ts-msgs
-      - ros-jazzy-ffmpeg-image-transport-msgs
-      - ros-jazzy-fuse-msgs
-      - ros-jazzy-marine-acoustic-msgs
-      - ros-jazzy-marine-sensor-msgs
-      - ros-jazzy-mola-msgs
-      - ros-jazzy-nao-lola-command-msgs
-      - ros-jazzy-nao-lola-sensor-msgs
-      - ros-jazzy-ouster-sensor-msgs
-      - ros-jazzy-ros-babel-fish-test-msgs
-      - ros-jazzy-ros2-socketcan-msgs
-      - ros-jazzy-rosbag2-performance-benchmarking-msgs
-      - ros-jazzy-rosbridge-test-msgs
-      - ros-jazzy-service-msgs
-      - ros-jazzy-soccer-geometry-msgs
-      - ros-jazzy-soccer-model-msgs
+      - ros-noetic-abb-egm-msgs
+      - ros-noetic-abb-rapid-msgs
+      - ros-noetic-abb-rapid-sm-addin-msgs
+      - ros-noetic-abb-robot-msgs
+      - ros-noetic-ackermann-msgs
+      - ros-noetic-actionlib-msgs
+      - ros-noetic-arbotix-msgs
+      - ros-noetic-aruco-msgs
+      - ros-noetic-aruco-opencv-msgs
+      - ros-noetic-atf-msgs
+      - ros-noetic-audio-common-msgs
+      - ros-noetic-automotive-autonomy-msgs
+      - ros-noetic-automotive-navigation-msgs
+      - ros-noetic-automotive-platform-msgs
+      - ros-noetic-autoware-can-msgs
+      - ros-noetic-autoware-config-msgs
+      - ros-noetic-autoware-external-msgs
+      - ros-noetic-autoware-lanelet2-msgs
+      - ros-noetic-autoware-map-msgs
+      - ros-noetic-autoware-msgs
+      - ros-noetic-autoware-system-msgs
+      - ros-noetic-auv-msgs
+      - ros-noetic-calibration-msgs
+      - ros-noetic-can-msgs
+      - ros-noetic-carla-msgs
+      - ros-noetic-cartesian-control-msgs
+      - ros-noetic-cartesian-msgs
+      - ros-noetic-clearpath-configuration-msgs
+      - ros-noetic-clearpath-control-msgs
+      - ros-noetic-clearpath-dock-msgs
+      - ros-noetic-clearpath-localization-msgs
+      - ros-noetic-clearpath-mission-manager-msgs
+      - ros-noetic-clearpath-mission-scheduler-msgs
+      - ros-noetic-clearpath-msgs
+      - ros-noetic-clearpath-navigation-msgs
+      - ros-noetic-clearpath-platform-msgs
+      - ros-noetic-clearpath-safety-msgs
+      - ros-noetic-clober-msgs
+      - ros-noetic-cob-3d-mapping-msgs
+      - ros-noetic-cob-android-msgs
+      - ros-noetic-cob-control-msgs
+      - ros-noetic-cob-manipulation-msgs
+      - ros-noetic-cob-msgs
+      - ros-noetic-cob-object-detection-msgs
+      - ros-noetic-cob-perception-msgs
+      - ros-noetic-common-msgs
+      - ros-noetic-compass-msgs
+      - ros-noetic-computer-status-msgs
+      - ros-noetic-control-msgs
+      - ros-noetic-controller-manager-msgs
+      - ros-noetic-costmap-cspace-msgs
+      - ros-noetic-cras-msgs
+      - ros-noetic-create-msgs
+      - ros-noetic-darknet-ros-msgs
+      - ros-noetic-dataspeed-pds-msgs
+      - ros-noetic-dataspeed-ulc-msgs
+      - ros-noetic-dbw-fca-msgs
+      - ros-noetic-dbw-mkz-msgs
+      - ros-noetic-dbw-polaris-msgs
+      - ros-noetic-delphi-esr-msgs
+      - ros-noetic-delphi-mrr-msgs
+      - ros-noetic-delphi-srr-msgs
+      - ros-noetic-depthai-ros-msgs
+      - ros-noetic-derived-object-msgs
+      - ros-noetic-diagnostic-msgs
+      - ros-noetic-diffbot-msgs
+      - ros-noetic-dingo-msgs
+      - ros-noetic-dwb-msgs
+      - ros-noetic-dynamixel-workbench-msgs
+      - ros-noetic-electronic-io-msgs
+      - ros-noetic-er-public-msgs
+      - ros-noetic-etsi-its-cam-msgs
+      - ros-noetic-etsi-its-cam-ts-msgs
+      - ros-noetic-etsi-its-cpm-ts-msgs
+      - ros-noetic-etsi-its-denm-msgs
+      - ros-noetic-etsi-its-msgs
+      - ros-noetic-etsi-its-vam-ts-msgs
+      - ros-noetic-fadecandy-msgs
+      - ros-noetic-fetch-auto-dock-msgs
+      - ros-noetic-fetch-driver-msgs
+      - ros-noetic-fiducial-msgs
+      - ros-noetic-fkie-multimaster-msgs
+      - ros-noetic-flatland-msgs
+      - ros-noetic-flexbe-msgs
+      - ros-noetic-four-wheel-steering-msgs
+      - ros-noetic-foxglove-msgs
+      - ros-noetic-franka-msgs
+      - ros-noetic-fuse-msgs
+      - ros-noetic-gazebo-msgs
+      - ros-noetic-gazebo-video-monitor-msgs
+      - ros-noetic-geographic-msgs
+      - ros-noetic-geometry-msgs
+      - ros-noetic-gnss-info-msgs
+      - ros-noetic-graph-msgs
+      - ros-noetic-grasping-msgs
+      # Pulls roscpp
+      # - ros-noetic-grid-map-msgs
+      - ros-noetic-hector-nav-msgs
+      - ros-noetic-hri-actions-msgs
+      - ros-noetic-hri-msgs
+      - ros-noetic-husky-msgs
+      - ros-noetic-ibeo-msgs
+      - ros-noetic-image-exposure-msgs
+      - ros-noetic-industrial-msgs
+      - ros-noetic-ixblue-ins-msgs
+      - ros-noetic-jackal-msgs
+      - ros-noetic-jsk-common-msgs
+      - ros-noetic-jsk-footstep-msgs
+      - ros-noetic-jsk-gui-msgs
+      - ros-noetic-jsk-hark-msgs
+      - ros-noetic-jsk-recognition-msgs
+      - ros-noetic-kartech-linear-actuator-msgs
+      - ros-noetic-khi-robot-msgs
+      - ros-noetic-kobuki-msgs
+      - ros-noetic-kvh-geo-fog-3d-msgs
+      - ros-noetic-led-msgs
+      - ros-noetic-leo-msgs
+      - ros-noetic-lgsvl-msgs
+      - ros-noetic-locomotor-msgs
+      - ros-noetic-map-msgs
+      - ros-noetic-map-organizer-msgs
+      - ros-noetic-marine-acoustic-msgs
+      - ros-noetic-marine-sensor-msgs
+      - ros-noetic-marker-msgs
+      - ros-noetic-marti-can-msgs
+      - ros-noetic-marti-common-msgs
+      - ros-noetic-marti-dbw-msgs
+      - ros-noetic-marti-introspection-msgs
+      - ros-noetic-marti-nav-msgs
+      - ros-noetic-marti-perception-msgs
+      - ros-noetic-marti-sensor-msgs
+      - ros-noetic-marti-status-msgs
+      - ros-noetic-marti-visualization-msgs
+      - ros-noetic-mavros-msgs
+      - ros-noetic-mbf-msgs
+      - ros-noetic-mcl-3dl-msgs
+      - ros-noetic-mesh-msgs
+      - ros-noetic-mia-hand-msgs
+      - ros-noetic-microstrain-inertial-msgs
+      - ros-noetic-mir-msgs
+      - ros-noetic-mobileye-560-660-msgs
+      - ros-noetic-mongodb-store-msgs
+      - ros-noetic-move-base-msgs
+      - ros-noetic-moveit-msgs
+      - ros-noetic-moveit-task-constructor-msgs
+      - ros-noetic-mpc-local-planner-msgs
+      - ros-noetic-mrpt-msgs
+      - ros-noetic-naoqi-bridge-msgs
+      - ros-noetic-nav-2d-msgs
+      - ros-noetic-nav-msgs
+      - ros-noetic-nav2d-msgs
+      - ros-noetic-neobotix-usboard-msgs
+      - ros-noetic-neonavigation-metrics-msgs
+      - ros-noetic-neonavigation-msgs
+      - ros-noetic-nmea-msgs
+      - ros-noetic-novatel-gps-msgs
+      - ros-noetic-novatel-oem7-msgs
+      - ros-noetic-object-recognition-msgs
+      - ros-noetic-octomap-msgs
+      - ros-noetic-open-manipulator-msgs
+      - ros-noetic-p2os-msgs
+      - ros-noetic-pacmod-msgs
+      - ros-noetic-pal-statistics-msgs
+      - ros-noetic-pcl-msgs
+      - ros-noetic-pddl-msgs
+      - ros-noetic-people-msgs
+      - ros-noetic-phidgets-msgs
+      - ros-noetic-picovoice-msgs
+      - ros-noetic-pilz-msgs
+      - ros-noetic-planner-cspace-msgs
+      - ros-noetic-plotjuggler-msgs
+      # Pulls OpenCV
+      # - ros-noetic-posedetection-msgs
+      - ros-noetic-power-msgs
+      - ros-noetic-pr2-common-action-msgs
+      - ros-noetic-pr2-controllers-msgs
+      - ros-noetic-pr2-gripper-sensor-msgs
+      - ros-noetic-pr2-mechanism-msgs
+      - ros-noetic-pr2-msgs
+      - ros-noetic-pr2-self-test-msgs
+      - ros-noetic-py-trees-msgs
+      - ros-noetic-qb-chain-msgs
+      - ros-noetic-qb-device-msgs
+      - ros-noetic-qb-softhand-industry-msgs
+      - ros-noetic-radar-msgs
+      - ros-noetic-rc-common-msgs
+      - ros-noetic-rc-reason-msgs
+      - ros-noetic-ridgeback-msgs
+      - ros-noetic-rm-msgs
+      - ros-noetic-robot-calibration-msgs
+      - ros-noetic-robot-controllers-msgs
+      - ros-noetic-robotont-msgs
+      - ros-noetic-rokubimini-msgs
+      - ros-noetic-ros-babel-fish-test-msgs
+      - ros-noetic-rosbag-fancy-msgs
+      - ros-noetic-rosbag-snapshot-msgs
+      - ros-noetic-rosbridge-msgs
+      - ros-noetic-rosgraph-msgs
+      - ros-noetic-rosmon-msgs
+      - ros-noetic-rosserial-msgs
+      - ros-noetic-rtabmap-msgs
+      - ros-noetic-rtcm-msgs
+      - ros-noetic-safety-limiter-msgs
+      - ros-noetic-schunk-svh-msgs
+      - ros-noetic-sensor-msgs
+      - ros-noetic-shape-msgs
+      - ros-noetic-sick-safevisionary-msgs
+      - ros-noetic-slam-toolbox-msgs
+      - ros-noetic-smacc-msgs
+      - ros-noetic-smach-msgs
+      - ros-noetic-speech-recognition-msgs
+      - ros-noetic-statistics-msgs
+      - ros-noetic-std-msgs
+      - ros-noetic-stereo-msgs
+      - ros-noetic-swri-profiler-msgs
+      - ros-noetic-tablet-socket-msgs
+      - ros-noetic-teleop-tools-msgs
+      - ros-noetic-tf2-geometry-msgs
+      - ros-noetic-tf2-msgs
+      - ros-noetic-tf2-sensor-msgs
+      - ros-noetic-trajectory-msgs
+      - ros-noetic-trajectory-tracker-msgs
+      - ros-noetic-turtlebot3-autorace-msgs
+      - ros-noetic-turtlebot3-msgs
+      - ros-noetic-twist-mux-msgs
+      - ros-noetic-ublox-msgs
+      - ros-noetic-udp-msgs
+      - ros-noetic-ur-dashboard-msgs
+      - ros-noetic-ur-msgs
+      - ros-noetic-uuid-msgs
+      - ros-noetic-variant-msgs
+      - ros-noetic-vector-map-msgs
+      - ros-noetic-velodyne-msgs
+      - ros-noetic-view-controller-msgs
+      - ros-noetic-vision-msgs
+      - ros-noetic-visualization-msgs
+      - ros-noetic-volta-msgs
+      - ros-noetic-warthog-msgs
+      - ros-noetic-wfov-camera-msgs
+      - ros-noetic-wireless-msgs
+      - ros-noetic-xpp-msgs
+      - ros-noetic-image-transport-plugins
+      - ros-noetic-std-srvs
 
   # copy local scripts to the snap usr/bin
   local-files:

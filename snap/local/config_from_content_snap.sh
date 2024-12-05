@@ -7,8 +7,30 @@ if [ ! -f "$CONFIGURATION_FILE_PATH" ]; then
   exit 1
 fi
 
-snapctl set port=$(yq '.port // 54321' $CONFIGURATION_FILE_PATH)
-snapctl set address=$(yq '.address // "0.0.0.0"' $CONFIGURATION_FILE_PATH)
-snapctl set topic-whitelist=$(yq '.topic-whitelist // "*"' $CONFIGURATION_FILE_PATH)
+OPTIONS="port
+address
+tls
+certfile
+keyfile
+topic-whitelist
+param-whitelist
+service-whitelist
+client-topic-whitelist
+min-qos-depth
+max-qos-depth
+num-threads
+send-buffer-limit
+use-sim-time
+use-compression
+capabilities
+include-hidden
+asset-uri-allowlist"
+
+for OPTION in ${OPTIONS}; do
+  VALUE="$(yq -e ".${OPTION}" $CONFIGURATION_FILE_PATH || true)"
+  if [ "${VALUE}" != null ]; then
+    snapctl set "${OPTION}"="${VALUE}"
+  fi
+done
 
 $SNAP/usr/bin/validate_config.sh
