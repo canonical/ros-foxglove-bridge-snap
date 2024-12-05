@@ -5,9 +5,10 @@ on:
       version:
         description: 'foxglove-bridge version to promote'
         required: true
-        default: jazzy
+        default: noetic
         type: choice
         options:
+          - noetic
           - humble
           - jazzy
 
