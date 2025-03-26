@@ -1,5 +1,5 @@
 name: foxglove-bridge
-version: '0.7.10'
+version: '0.8.4'
 license: MIT
 summary: Foxglove WebSocket bridge for ROS and ROS 2.
 description: |
