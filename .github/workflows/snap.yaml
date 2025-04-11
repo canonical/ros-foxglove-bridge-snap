@@ -1,10 +1,10 @@
 name: snap
 on:
   push:
-    tags:
-      - 'jazzy/*'
     branches:
       - jazzy
+    paths:
+      - 'snap/**'
   pull_request:
     branches:
       - jazzy
@@ -23,3 +23,4 @@ jobs:
       snapcraft-enable-experimental-extensions: true
       runs-on: '["ubuntu-latest", ["self-hosted", "linux", "ARM64", "medium", "noble"]]'
       snap-track: jazzy
+      snap-risk: candidate
