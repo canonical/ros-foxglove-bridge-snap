@@ -22,6 +22,9 @@ plugs:
   configuration-read:
     interface: content
     target: $SNAP_COMMON/configuration
+  rob-cos-common-read:
+    interface: content
+    target: $SNAP_COMMON/rob-cos-shared-data
 
 apps:
   config-from-content-snap:
@@ -32,7 +35,7 @@ apps:
   foxglove-bridge:
     command: usr/bin/launch.sh
     daemon: simple
-    plugs: [network, network-bind]
+    plugs: [network, network-bind, rob-cos-common-read]
     extensions: [ros2-humble]
 
   reset-config:
