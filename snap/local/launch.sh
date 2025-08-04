@@ -24,12 +24,13 @@ asset-uri-allowlist"
 for OPTION in ${OPTIONS}; do
   VALUE="$(snapctl get ${OPTION})"
   if [ -n "${VALUE}" ]; then
-    LAUNCH_OPTIONS="${LAUNCH_OPTIONS} ${OPTION}:=${VALUE}"
+     # Replace '-' with '_' in option keys,
+    # because snap parameters use dashes,
+    # while ROS 2 launch files expect underscores.
+    OPTION_KEY=$(echo "${OPTION}" | tr - _)
+    LAUNCH_OPTIONS="${LAUNCH_OPTIONS} ${OPTION_KEY}:=${VALUE}"
   fi
 done
-
-# Replace '-' with '_'
-LAUNCH_OPTIONS=$(echo ${LAUNCH_OPTIONS} | tr - _)
 
 if [ "${LAUNCH_OPTIONS}" ]; then
   logger -t ${SNAP_NAME} "Running with options: ${LAUNCH_OPTIONS}"
