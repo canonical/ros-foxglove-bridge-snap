@@ -35,7 +35,7 @@ apps:
   foxglove-bridge:
     command: usr/bin/launch.sh
     daemon: simple
-    plugs: [network, network-bind, rob-cos-common-read]
+    plugs: [network, network-bind]
     extensions: [ros2-humble]
 
   reset-config:
