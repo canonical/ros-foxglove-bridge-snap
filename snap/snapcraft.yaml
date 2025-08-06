@@ -22,10 +22,14 @@ plugs:
   configuration-read:
     interface: content
     target: $SNAP_COMMON/configuration
-  rob-cos-common-read:
-    interface: content
-    target: $SNAP_COMMON/rob-cos-shared-data
 
+# A slot for writing TLS certificates
+slots:
+  foxglove-certs:
+    interface: content
+    write: 
+      - $SNAP_COMMON/foxglove-certs
+ 
 apps:
   config-from-content-snap:
     command: usr/bin/config_from_content_snap.sh
