@@ -1,5 +1,5 @@
 name: foxglove-bridge
-version: '0.8.3'
+version: '0.8.5'
 license: MIT
 summary: Foxglove WebSocket bridge for ROS and ROS 2.
 description: |
@@ -45,7 +45,7 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_TESTING=OFF
     source: https://github.com/foxglove/ros-foxglove-bridge.git
-    source-tag: 0.8.3
+    source-tag: 0.8.5
     build-packages:
       - ros-jazzy-spdlog-vendor
     stage-snaps:
