@@ -22,6 +22,10 @@ plugs:
   configuration-read:
     interface: content
     target: $SNAP_COMMON/configuration
+  # Plug to read TLS cert files
+  rob-cos-common-read:
+    interface: content
+    target: $SNAP_COMMON/rob-cos-shared-data
 
 apps:
   config-from-content-snap:
