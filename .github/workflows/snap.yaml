@@ -2,12 +2,12 @@ name: snap
 on:
   push:
     branches:
-      - humble
+      - cos-humble
     paths:
       - 'snap/**'
   pull_request:
     branches:
-      - humble
+      - cos-humble
   workflow_dispatch:
 
 concurrency:
@@ -21,5 +21,5 @@ jobs:
       snapstore-login: ${{ secrets.STORE_LOGIN }}
     with:
       runs-on: '["ubuntu-latest", ["self-hosted", "linux", "ARM64", "medium", "noble"]]'
-      snap-track: humble
+      snap-track: cos-humble
       snap-risk: candidate
