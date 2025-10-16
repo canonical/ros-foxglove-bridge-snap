@@ -24,7 +24,11 @@ asset-uri-allowlist"
 for OPTION in ${OPTIONS}; do
   VALUE="$(snapctl get ${OPTION})"
   if [ -n "${VALUE}" ]; then
-    LAUNCH_OPTIONS="${LAUNCH_OPTIONS} ${OPTION}:=${VALUE}"
+    # Replace '-' with '_' in option keys,
+    # because snap parameters use dashes,
+    # while ROS launch files expect underscores.
+    OPTION_KEY=$(echo "${OPTION}" | tr - _)
+    LAUNCH_OPTIONS="${LAUNCH_OPTIONS} ${OPTION_KEY}:=${VALUE}"
   fi
 done
 
