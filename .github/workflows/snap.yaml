@@ -2,12 +2,12 @@ name: snap
 on:
   push:
     branches:
-      - jazzy
+      - cos-jazzy
     paths:
       - 'snap/**'
   pull_request:
     branches:
-      - jazzy
+      - cos-jazzy
   workflow_dispatch:
 
 concurrency:
@@ -22,5 +22,5 @@ jobs:
     with:
       snapcraft-enable-experimental-extensions: true
       runs-on: '["ubuntu-latest", ["self-hosted", "linux", "ARM64", "medium", "noble"]]'
-      snap-track: jazzy
+      snap-track: cos-jazzy
       snap-risk: candidate
