@@ -10,6 +10,8 @@ on:
         options:
           - humble
           - jazzy
+          - cos-humble
+          - cos-jazzy
 
 jobs:
   snaps:
